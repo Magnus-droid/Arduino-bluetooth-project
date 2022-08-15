@@ -1,7 +1,6 @@
 import serial
 import serial.tools.list_ports
 from multiprocessing import Queue
-from time import sleep
 from threading import Thread
 
 
@@ -30,6 +29,5 @@ def autoDetect():
             current = q.get_nowait()
             if current[0] == "Pong!":
                 return current[1]
-
 
 print(autoDetect())
