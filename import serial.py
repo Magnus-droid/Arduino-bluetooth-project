@@ -30,12 +30,11 @@ def autoDetect():
 
 fle = Path('StorageTextFile.txt')
 fle.touch(exist_ok=True)
-with open('StorageTextFile.txt', 'r') as r:
-    aD = r.read()  
+with open('StorageTextFile.txt', 'r+') as f:
+    aD = f.read()  
     if aD == '':
         aD = autoDetect()
-        with open('StorageTextFile.txt', 'w') as w:
-            w.write(aD)
+        f.write(aD)
 ser = serial.Serial(aD, 9600, timeout=1)
 ser.write(b'Board found!')   
 data = ser.readline().decode("ascii")
